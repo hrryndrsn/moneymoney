@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+  <link rel="stylesheet" href="public/whatever.css">
+  <script src="public/main.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+    var storedState = localStorage.getItem('elm-todo-save');
+    var startingState = storedState ? JSON.parse(storedState) : null;
+    var app = Elm.Main.init({ flags: startingState });
+    app.ports.setStorage.subscribe(function(state) {
+      localStorage.setItem("elm-todo-save", JSON.stringify(state))
+    });
+    </script>
+</body>
+</html>
